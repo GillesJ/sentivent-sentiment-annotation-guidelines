@@ -1,0 +1,216 @@
+\documentclass[a4paper]{report}
+\usepackage{sentivent}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[ttdefault=true]{sourcecodepro}
+\renewcommand*\thesection{\arabic{section}}
+\setcounter{section}{0}
+
+\begin{document}
+
+\chapter*{\project Event Annotator Try-out}
+
+Dear candidate annotator, today we present you with a short try-out of the annotation task.
+The try-out is limited in time and scope and serves to check your annotation aptitude and English skills.
+We will limit ourselves to a limited set of categories and 3 short news articles.
+
+You will only annotate the event trigger, this is the word(s) that expresses an event of a certain type.
+This document briefly explains what an event and a trigger is and when to annotate them.
+Please read the text below attentively, you will apply it in a few minutes.
+
+\section{What is an event?}
+
+\subsection*{Conceptually: events in economic news}
+
+An event is a textual description of a real-world occurrence that involves multiple participants.
+An event describes what has happened, who was involved, at what time, in which place.
+Deals, employee changes, product launches, elections, company mergers or lawsuits are the some intuitive examples of what constitutes an event in economic news. 
+
+\subsection*{Technically: features of an event}
+
+Technically, an event is always described explicitly in the text:
+First, the presence of an event is indicated by a lexical \textbf{trigger.}
+Second, each event belongs to a certain \textbf{type}.
+Events outside the event typology are not tagged.
+
+In the following sections, we explain these elements in detail.
+
+\section{Event triggers}
+
+The trigger of an event is the \textbf{minimal span of text} (a single word or a small phrase) that most succinctly expresses the occurrence of an event.
+It is often the main verb describing an action or a state.
+Generally, we think of the trigger as the word that most strongly refers to an event.
+In the examples below (and throughout this document), event triggers are \anntrg{underlined.}
+We also indicate the \type{type and type} of most events in the example sentences.
+
+\begin{exe}
+    \ex\label{ex/verb1} \annexe{On Monday, shares of biopharmaceutical company Celgene \anntrg{tumbled}}
+        \expl the \textbf{verb} \anntrg{tumbled} is the trigger of a \type{Conflict.Attack} event.
+    \ex\label{ex/noun1} Noun: \annexe{[..] AA's exclusive airline \anntrg{sponsorship deal} with the World Series champion Cubs.}
+        \expl the noun \anntrg{sponsorship deal} is the trigger of a \type{CSR/Brand} event.
+    \ex\label{ex/noun2} \annexe{Viscen is revealed to be the \anntrg{buyer} of the ACX directories.}
+        \expl the \textbf{noun} \anntrg{buyer} is the trigger of a \type {MA.Acquisition} event.
+\end{exe}
+
+\section{What forms do event triggers take?}
+
+As examples \ref{ex/verb1} and \ref{ex/noun1} show, the trigger can be a \textbf{verb}, but also a \textbf{noun}, \textbf{pronoun} or a past or present \textbf{participle} or \textbf{adjective} in modifier position.
+
+\begin{exe}
+    \ex\label{ex/verb2} Verb: \annexe{The FDA did not \anntrg{approve} JNJ's new medicine.}
+    \ex\label{ex/noun2} Noun: \annexe{The \anntrg{acquisition} of ACX went over without a problem.}
+    \ex\label{ex/adjective} Adjective: \annexe{The \anntrg{banktrupt} firm left investors angry.}
+\end{exe}
+
+We typically think of events as processes or actions; but we also tag states that result from taggable events.
+As shown by the examples below, resultative events can be predicate adjectives, participles used as modifiers or even present participles that denote an action currently in progress.
+
+\begin{exe}
+    \ex\label{ex/predicateadjective} Predicate adjective: \annexe{The firm is \anntrg{bankrupt.}}
+    \ex\label{ex/npadjective} Nominal modifier adjective: \annexe{The \anntrg{bankrupt} firm leaves many angry investors behind.}
+    \ex\label{ex/presentparticiple} Present participle: \annexe{The firms are currently \anntrg{merging}.}
+\end{exe}
+
+As resultative states these examples can be paraphrased as "the state of having gone bankrupt" or "the state of having been merged".
+Always tag both on-going events and resultative events.
+
+Anaphors of events such as \textbf{pronouns and definite descriptions} of previously mentioned events are also tagged.
+
+\begin{exe}
+    \ex\label{ex/pronoun1} Pronoun: \annexe{The firm went \anntrg{bankrupt.} \anntrg{It} was a great loss for many of the early-stage investors.}
+        \expl pronoun \anntrg{It} refers to a previous \type{Bankruptcy} event and is tagged.
+    \ex\label{ex/pronoun1} Definite noun phrase: \annexe{Amazon \anntrg{launched} its own smartphone. \anntrg{It} was a festive \anntrg{affair}.}
+        \expl pronoun \anntrg{It} and definite noun \anntrg{affair} refers to a previous event \type{Product.Launch}.
+\end{exe}
+
+Anaphoric triggers, i.e. \anntrg{it} and \anntrg{affair} are the same type and type as the event they refer.
+
+% Comes from official rERE gl's p 11.
+
+\section{Finding the right trigger}
+
+Identifying the trigger of events is often straightforward, as in example \ref{ex/verb1} above.
+Just as often, we find a number of words that could be marked as a trigger, or an event is described in such a way that picking a single word as a trigger does not feel right.
+As a rule of thumb, we keep triggers as small as possible; in this section, we describe procedures to find the right trigger when it is not obvious.
+
+Practically, annotators read the full article text using the event typology as a guiding reference.
+During first reading(s) they note possible events mentioned in the article.
+We advice annotators to focus on identifying types first and only assign types after triggers have been found.
+
+Next they attentively go over the article a second time and looking for the lexical triggers.
+Noting the triggers, annotators double check their spans.
+
+% \section{Triggers as contiguous groups of words}
+
+% Is the trigger an uninterrupted group of words?
+
+% An event can be described by a group of words such that it is impossible to pick one word without losing the meaning of the phrase.
+% In that case, the trigger is the entire phrase.
+% Like many aspects of annotation, this is often jective; we encourage annotators to use their best judgment based on the examples in this document -- keeping in mind that triggers should not be longer than they absolutely need to be.
+
+% \begin{exe}
+%     \ex \annexe{Hoe zijn de Spaanse autoriteiten de Catalaanse ex-minister-president Carles Puigdemont \anntrg{op het spoor gekomen?}}
+%         \expl \type{Justice.Investigation}
+%     \ex \annexe{De soldaten \anntrg{zijn weer thuis.}}
+%         \expl None of the words in this group by itself carry the meaning of movement.
+%         \expl \type{Movement.TransportPerson}
+% \end{exe}
+
+\section{Picking a word from multiple possible trigger words}
+
+There may still be situations where you can reasonably identify multiple different words for a single event trigger. We provide a few rules in these cases to avoid confusion. As a general rule-of-thumb: Always select the smallest meaningful lexical unit as an event trigger.
+\\\\
+\noindent\textbf{The Stand-Alone Noun Rule}:
+In \textbf{verb+noun} constructions, we will simply select the noun whenever that noun can be used by itself to refer to the event.
+If the verb+noun cannot be reduced without loosing the event meaning multiple words will be tagged.
+
+\begin{exe}z
+    \ex \annexe{Foo Corp. had previously \textit{filed} \anntrg{Chapter 11} in 2001.}
+        \expl the \textbf{noun} \anntrg{Chapter 11} not verb+noun \textit{filed Chapter 11} is the trigger as per the Stand-Alone Noun Rule.
+    \ex \annexe{The company had to \textit{pay a} \anntrg{fine} of 300.000EUR.}
+        \expl the \textbf{fine} \anntrg{Chapter 11} not verb+noun \textit{pay a fine} is the trigger as per the Stand-Alone Noun Rule.
+\end{exe}
+
+\noindent\textbf{Stand-Alone Adjective Rule}:
+In \textbf{verb+X+noun} constructions, when a verb and an adjective are used together to express the occurrence of an event, the adjective will be chosen as the trigger whenever it can stand alone to express the resulting state brought about by the event.
+
+\begin{exe}
+    \ex \annexe{The negative findings left 3 projects \anntrg{disapproved}.}
+        \expl the \textbf{adjective} \anntrg{disapproved} not verb+X+adjective \textit{left 3 projects} is the trigger as per the Stand-Alone Adjective Rule.
+\end{exe}
+
+\noindent\textbf{Main Verb Rule}: When several verbs are used to together to express an event, only the main verb is the trigger.
+\begin{exe}
+    \ex \annexe{XYZ Corp. \textit{announced} \annexe{laying off} 37 workers in the Chicago facility.}
+    \ex \annexe{John D. Idol will \anntrg{take over} as Chief Executive.}
+    \ex \annexe{XYZ Corp \anntrg{laid} Jane off.}
+    \ex \annexe{John D. Idol had \anntrg{taken} the company over.}
+\end{exe}
+
+\noindent\textbf{Contiguous Verb+Particle/Verb+Adverb Rule}: In \textbf{verb+particle and verb+adverb} constructions we will tag main verb and particle together only if the words occur contiguously. If they are interrupted we only annotate the verb.
+\begin{exe}
+    \ex \annexe{Jane was \anntrg{laid off} by XYZ Corp.}
+    \ex \annexe{John D. Idol will \anntrg{take over} as Chief Executive.}
+    \ex \annexe{XYZ Corp \anntrg{laid} Jane off.}
+    \ex \annexe{John D. Idol had \anntrg{taken} the company over.}
+\end{exe}
+
+\section{Multiple events within a sentence}
+Do not confuse cases where there multiple possible triggers for the same event within the same sentence with cases where there multiple events expressed in the same sentence.
+Multiple events can be expressed in the same sentence.
+
+This usually occurs both in complex sentences, i.e. with coordinated (\textit{and, or, but, for, etc.}) and subordinated (if, that, because, where, etc.) clauses.
+But also in simplex sentences consisting of one clause.
+
+\begin{exe}
+    \ex \annexe{The \anntrg{product launch} caused a rise in \anntrg{revenue} and \anntrg{sales}.}
+    \ex \annexe{John D. Idol will \anntrg{take over} as Chief Executive.}
+\end{exe}
+
+Sometimes multiple events are triggered by adjectives sharing the same verb. Tag each adjective as a seperate event.
+
+\section{Try-out}
+
+It is now your turn to annotate 3 short articles for event triggers keeping in mind these rules.
+Keep in mind the event types given in the typology on the next page.
+You are encourage to use search engines and the internet any time if you do not understand terms or need additional information on a company or specific event.
+
+Do not worry if you do not understand everything and feel free to ask.
+Do not be afraid to make mistakes.
+Your intuition is probably correct.
+
+Please open Chrome browser on the Desktop and go to: \\\\
+\large{\texttt{\url{http://webanno.lt3.ugent.be}}} \\
+\large{\texttt{username: annotry0X}} where X = your assigned user number.\\
+\large{\texttt{password: 4nn0try}}
+
+\newpage
+\section{Event Types}
+
+\noindent\textbf{Deal}:
+Deals and partnerships to cooperate with another company or entity. Service and product deals, licensing, contract bid, alliance, partnership, Memorandum of Understanding (MOU), pacts, joint ventures (two companies pool resources to accomplish a task), collaborations, contracts, agreements, development partnerships (usually public private partnerships for development projects), and affiliations.
+\\\\
+\noindent\textbf{Employment}:
+Events regarding employment changes, compensation and issues.
+CEO change, executive change, board change, executive compensation, employment issues, strikes, workforce increase, workforce decrease/firing.
+\\\\
+\noindent\textbf{Facility}:
+Facilities opening, facilities closing, headquarters relocation, headquarters opening, headquarters closing. Facilities include headquarters, retail sites, production sites, logic centers, factories etc.
+\\\\
+\noindent\textbf{Merger-Acquisition}:
+Consolidation of companies and assets involving at least two companies. A merger is a legal consolidation of two entities into one entity. An acquisition occurs when one entity takes ownership of another entity's stock, equity interests or assets.
+\\\\
+\noindent\textbf{Product-Service}:
+Events on products and services a company provides or is planning to provide, or whether a product is on trail, or the results of a trail. Product/service launch, product recall, product/service trail results, product/service approval, product/service update, product/service issues.
+\\\\
+\noindent\textbf{SecurityValue}:
+Events describing the value/price or change in value/price of a share or stock. We also includes groupings of securities as in market indices. We include announcements, forecasts, price increase/growth, reduction, or maintain.
+\\
+Definition of security:
+\begin{enumerate}
+    \item \small{\url{https://www.investopedia.com/terms/s/security.asp}}
+    \item \url{https://en.wikipedia.org/wiki/Security_(finance)}
+\end{enumerate}
+
+\end{document}

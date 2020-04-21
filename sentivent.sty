@@ -1,0 +1,155 @@
+\ProvidesPackage{sentivent}
+
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{vhistory}
+\usepackage{ragged2e}
+\usepackage{array}
+\usepackage{csquotes}
+\usepackage{bold-extra}
+\usepackage[table, dvipsnames]{xcolor}
+\usepackage[hyphens]{url}
+\usepackage{tagging}
+\usepackage{markdown}
+\usepackage[normalem]{ulem} % [normalem] prevents the package from changing the default behavior of `\emph` to underline.
+\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2.12cm]{geometry}
+\usepackage[
+backend=biber,
+style=numeric,
+citestyle=numeric,
+hyperref=true,
+natbib=true,
+sorting=none
+]{biblatex}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\usepackage{tabularx}
+% \usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[english]{babel}
+\usepackage{longtable}
+\usepackage{ctable}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage[
+colorlinks=true,
+allcolors=midnightblue
+]{hyperref}
+\usepackage{easylist}
+\usepackage[normalem]{ulem}
+\usepackage[T1]{fontenc}
+\usepackage{calc}
+\usepackage{titlesec}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+\titleformat{\chapter}{\normalfont\Huge\bfseries}{\thechapter.}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-25pt}{20pt}
+
+% % custom fonts
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+% \usepackage{fontspec}
+% \setmainfont[Ligatures=TeX]{NotoSans}[
+% Extension = .ttf ,
+% UprightFont = *-Regular ,
+% BoldFont = *-Bold ,
+% ItalicFont = *-Italic,
+% BoldItalicFont = *-BoldItalic
+% ]
+% \setmonofont{NotoMono.ttf}
+
+\linespread{1.3} % 1.3 is one and a half spacing (and is nice), 1.6 is double spacing
+
+% ensure autoreference of chapter starts with capital Chapter:
+\addto\extrasenglish{%
+  \renewcommand*{\chapterautorefname}{Chapter}%
+}
+\addto\extrasenglish{%
+  \renewcommand*{\sectionautorefname}{Section}%
+}
+
+% align caption
+\captionsetup{justification=raggedright,singlelinecheck=false}
+
+\newcommand*{\onpage}[1]{p. #1}
+\newcommand*{\betweenpages}[2]{p. #1--#2}
+\newcommand*{\code}[1]{\texttt{#1}}
+\newcommand*{\wip}{\textbf{WIP~}}
+
+% inline markup
+\newcommand*{\annexe}[1]{\textit{#1}}
+\newcommand*{\type}[1]{\texttt{#1}}
+% \newcommand*{\type}[1]{\hyperlink{{#1}}{\texttt{#1}}}
+\newcommand*{\annhead}[1]{\emph{#1}}
+\newcommand*{\anntrg}[1]{\textbf{#1}}
+\newcommand*{\exargpart}[1]{\uline{#1}}
+\newcommand*{\exargfill}[1]{\dashuline{#1}}
+\newcommand*{\expl}{\par $\rightarrow$ \hspace{0.5em}}
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}.~\nameref*{#1}}}
+
+% % inline with types
+% \newcommand*{\anntrg}[2]{%
+%     \textbf{#1}
+%     \ifthenelse{\equal{#2}{}}{}{\textsubscript{#2}}%
+% }
+
+% Redefine title page so numbering starts at 1 (easier for electronic reader referencing)
+\makeatletter
+\renewenvironment{titlepage}
+ {%
+  \if@twocolumn
+    \@restonecoltrue\onecolumn
+  \else
+    \@restonecolfalse\newpage
+  \fi
+  \thispagestyle{plain}%
+ }
+ {%
+  \if@restonecol
+    \twocolumn
+  \else
+    \newpage
+  \fi
+ }
+\makeatother
+
+% easylist
+\newenvironment{el}
+    {\bigskip \begin{easylist}[itemize]}
+    {\end{easylist} \bigskip}
+
+\usepackage{gb4e}
+\noautomath % This command cancels some behaviour in gb4e that causes trouble
+
+%  placeholder variables
+\newcommand*{\project}{{\scshape Sent}i{\scshape vent}~}
+\newcommand*{\scheme}{{\scshape Sent}i{\scshape vent} Sentiment Annotation Guidelines~}
+\newcommand*{\typecount}{18~}
+\newcommand*{\subtypecount}{43~}
+
+\newcommand*{\eventcolor}{grey~}
+\newcommand*{\eventpartcolor}{grey~}
+\newcommand*{\entitycolor}{blue~}
+\newcommand*{\sentimentcolor}{green~}
+
+
+\newenvironment{hint}
+    {
+        \begin{quote}
+        \color{Emerald}
+    }{
+        \end{quote}
+    }
+
+\newcommand*{\cntnt}{\narrower \color{blue}}
+
+\definecolor{lightergray}{RGB}{220,220,220}
+\definecolor{midnightblue}{rgb}{0.10, 0., 1.}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\newlist{steps}{enumerate}{10}
+\setlist[steps]{label*=\arabic*.}

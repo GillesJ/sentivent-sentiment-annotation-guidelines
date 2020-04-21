@@ -1,0 +1,58 @@
+\documentclass[a4paper]{report}
+\usepackage{sentivent}
+%use \tagged{full}{text} to have extra text for full publication with academic details, not relevant for students.
+\usetag{meta}
+
+\addbibresource{references.bib}
+
+\title{
+    \includegraphics[width=5cm]{img/sentiventlogo-gradient.png}\\
+    [10pt]{\huge\bfseries {\Huge S{\huge ENT}i{\huge VENT}}\\
+    Sentiment Annotation Guidelines\\
+    v\vhCurrentVersion\\
+    \Large{\normalfont{Technical Report}}
+    }
+}
+\author{Gilles~Jacobs \\ \small{\texttt{gillesm.jacobs@ugent.be; gilles@jacobsgill.es}}}
+\date{February 2020}
+
+\begin{document}
+
+\tagged{full}{
+\maketitle
+\tableofcontents
+\newpage
+
+
+\input{tex/revisionhistory.tex}
+\label{chapter/rev}
+}
+
+\chapter{SENTiVENT Sentiment Guidelines} % change back to Introduction
+\label{chapter/intro}
+\input{tex/introduction.tex}
+
+\chapter{Annotation Definitions}
+\label{chapter/definitions}
+\input{tex/definitions}
+
+\chapter{Workflow}
+\label{chapter/workflow}
+\input{tex/workflow}
+
+\chapter{Annotation Interface}
+\label{chapter/interface}
+\input{tex/interface}
+
+\tagged{full}{
+\chapter{Sentiment design choices}
+\label{chapter/sentiment}
+\input{tex/sentiment.tex}
+}
+
+\tagged{full}{
+\nocite{*}
+\printbibliography[heading=bibintoc]
+}
+
+\end{document}

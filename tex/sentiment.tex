@@ -1,0 +1,90 @@
+\section{What is sentiment}
+
+Sentiment is positive or negative opinion that is expressed in text.
+
+% Common-sense investor sentiment
+Point of view: investor sentiment: someone looking to invest in the company, product or entity mentioned in a 
+Investing is the act of allocating funds to an asset or committing capital to an endeavor (a business, project, real estate, etc.), with the expectation of generating an income or profit. Positive investor sentiment thus entails the opinion that the investee is worth allocating funds too with the expectation it will generate wealth over a period of time.
+Negative investor sentimen entails the opposite: there is the expectation that a loss will be made and the invested funds will not be recuperated. There is some financial risk associated with the sentiment target.
+
+We collected a corpus of company-specific economic news articles.
+These articles are largely written with the express purpose of informing the wider public as potential stock market investors about recent events pertaining to a company, industry, or market.
+
+\section{Related work dataset comparison}
+\subsection{Differences between SENTiVENT and EventDNA}
+% Differences in event conceptualization
+\textbf{Event annotation differences:} The EventDNA project \cite{colruyt2019leveraging} also aims to relate events to sentiment as ``polar facts'' in news text.
+While the goal is similar, the definition and annotation of events are different between our SENTiVENT event annotations \cite{jacobs2020sentiventeventguidelines} and EventDNA annotations \cite{Colruyt2019}:
+
+\begin{enumerate}[wide, labelwidth=!, nolistsep, label=\alph*)]
+\item \textbf{General vs. economic news domain}:
+EventDNA focusses on general news reporting, while SENTiVENT focusses on company-specific business news.
+EventDNA uses the Rich ERE event typology for general news text, while SENTiVENT developed its own company-specific typology for economic events.
+
+\item \textbf{Entity annotation}:
+EventDNA annotates entities separately in line with Rich ERE while SENTiVENT does not.
+In SENTiVENT only entities that participate in events as arguments are tagged.
+
+\item \textbf{Annotation of event triggers}:
+EventDNA does not annotate event triggers as as-small-as-possible lexical units as SENTiVENT but annotates whole clauses, nominal constructions and infinitive constructions.
+The event triggers of EventDNA span a large amount of continuous tokens corresponding to clausal units including arguments, while SENTiVENT triggers are smaller lexical units excluding arguments.
+EventDNA's approach greatly simplifies annotation of event triggers and recovers lexical head units using automatic syntactic dependency parsing \cite{colruyt2019leveraging}.
+Hence, SENTiVENT/ACE/ERE-like triggers and EventDNA's triggers can by mapped for multi-task experiments using dependency parsers with custom rules in the clausal > lexical direction and inversely use automatic clause boundary detection \cite{sharma2016clause} in the lexical > clausal direction.
+
+\item \textbf{Event attributes}: There are minor differences in how SENTiVENT and EventDNA handle event attributes such as realis, modality, tense, prominence.
+Realis and modality attributes between SENTiVENT and EventDNA are comparably binary: negated events are tagged as such and modality is also either asserted or other.
+EventDNA includes a Tense for capturing time information and Event Prominence which annotates if the event is the main event/news peg in the news article attribute while SENTiVENT does not.\\
+\end{enumerate}
+
+\textbf{Sentiment annotation differences:} 
+
+\begin{enumerate}[wide, labelwidth=!, nolistsep, label=\alph*)]
+\item \textbf{General common-sense vs. investor sentiment}: EventDNA attempts to capture general common-sense event sentiment AKA polar facts: the prototypical sentiment related to events by the general public. SENTiVENT attempts to capture prototypical investor sentiment on company-specific events. % explain more
+
+\item \textbf{Sentiment on entities}: EventDNA tags all entities in a text, including those outside of events, and annotates their prototypical sentiment polarity. SENTiVENT only on entities that are event arguments leading to less entities with sentiment.
+\end{enumerate}
+
+\subsection{SENTiVENT vs. Rich ERE}
+As explained in \ref{historyeventextract} Rich ERE is the latest iteration of a line of research including ACE and Light ERE.  % todo write section and use correct label
+We will focus mainly on Rich ERE as we largely based our event annotations on these guidelines.
+
+% pasted from sentivent-doctoraatsthesis/chapt-data/chapt-data.tex
+Our event conceptualization is highly similar to the Rich ERE annotation scheme with the major difference that event arguments are not restricted by entity type.
+The largest divergence from Rich ERE is the fact that ERE annotates a set of pre-defined entities before the event annotation phase.
+Entities and relations are not annotated in our work.
+We do not tag entities separately, i.e. any text span that describes a relevant event argument within the extent is tagged.
+Rich ERE in contrast requires the more strict Argument Entities which are entity classes within the scope/extent of the current event of a particular pre-determined type.
+We do maintain the ERE distinction between two argument types: Participant arguments and filler arguments.
+In Rich ERE, filler arguments are non-predefined arguments that are not pre-annotated and are also not limited to event mention scope. i.e. they can be annotated from anywhere in the document.
+Event argument definitions are hence not restricted by entity types.
+This make the task more similar to the semantic frame annotation practices as in FrameNet \cite[Chapter~3]{ruppenhofer2010framenet} which are lexicographically motivated: lexical units (i.e. word token-spans) that convey a core meaning of the event arguments are annotated unrestricted by entity type or syntax.
+
+Another major difference from Rich ERE is how we operationalize factuality:
+ERE events have one feature Realis with three values: .
+Our events have two features Polarity and Modality.
+
+Rules that define the extent (i.e., token-span length and lexical units) are also taken from Rich ERE.
+These rules determine how long spans should be and help annotators in ambiguous cases.
+In comparison with other event conceptualizations such as \cite{sprugnoli2017} names this the Event Nugget conceptualization in DEFT Rich ERE: unlike ACE or Light ERE, Rich ERE allows for discontinuous and multi-token spans but are discouraged.
+
+The event typology for Rich ERE is meant to be for knowledge-base population from general text domain.
+ACE/ERE event types betray an interest in governmental socio-political tracking with military, political related event types such as Conflict, Contact, Movement, Transaction, Justice events etc.
+% TODO add number of event types and check genres in TAC KBP Rich ERE annotations NEWS mainly?
+Our work focuses on domain-specific events in the company-specific economic news genre.
+This naturally leads to a different, more specific event typology.
+
+\subsection{SENTiVENT vs. SentiFM}
+SentiFM is the predecessor to the SENTiVENT project and also aims to assign economic sentiment in business news.
+The focus of SentiFM lies on processing of implicit sentiment and events are tagged as a type of entity in text.
+
+Events in SentiFM are defined by 10 types.
+The event triggers are loosely defined and are allowed to be discontinuous.
+This leads to event triggers that typically correspond to clausal units.
+No event arguments are tagged except for one relation which is the same for all events type: the company to which the event relates.
+No realis, tense, factuality, negation attributes are tagged.
+
+Sentiment-wise SentiFM provides highly detailed fine-grained annotations.
+SentiFM thus presents a dataset in which sentiment and event are not directly linked in annotation.
+
+\section{What are aspect}
+

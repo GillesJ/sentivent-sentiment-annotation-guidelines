@@ -1,0 +1,98 @@
+The \scheme codifies the annotation of sentiment in economic news articles.
+Every news article contains news events communicating what is happening to companies such as a CEO change, a stock rating upgrade, analyst recommendations, a strike, the merger of two companies, etc.
+The goal of \project is to automatically extract facts and opinions in a fine-grained manner from economic news.
+Annotators will produce common-sense sentiment labels for economic events that will serve as training data to learn machine learning algorithms to extract this data/information automatically from text.
+
+\tagged{full}{
+\section{\project Goals and Task}
+The goal of this annotation scheme is to produce a gold-standard labeled dataset for enabling aspect-based sentiment analysis in company-specific news.
+The goal of the \project research project is to enable supervised learning for event extraction and sentiment analysis for economic news.
+This requires a manually created gold standard dataset.
+For the purposes of \project, an event in the business news-wire text domain are real-world occurrences that affect and involve companies.
+The primary goal of company-specific news is reporting changes in the current state-of-affairs regarding businesses and the economy and associating that factual information with opinion data.
+This is why automated sentiment analysis is a natural task for information extraction in this domain.
+}
+
+\section{Common-Sense Investor Sentiment}
+\label{sec:sentimentdef}
+An investor is someone looking to give capital to a company, product or asset with the expectation of profit in the future.
+Investing is the act of allocating funds to an asset or committing capital to an endeavor (a business, project, real estate, etc.), with the expectation of generating an income or profit.
+Sentiment are the attitudes and opinions a person holds towards a certain topic.
+Investor sentiment then is the opinions that an investor holds towards a potential investee.
+Generally, positive investor expectations come from events that have a desirable effect on a business entity's characteristics (e.g., its financial metrics, growth, position in the market) or the larger surrounding economic situation (e.g., macro-economic factors, policy changes, market fluctuations).
+Examples of positive events are increases in growth of sales, revenue, profit, cash flow or other financial metrics, strategic investments, cut expenses, well-reviewed products, effective marketing efforts, growing stock price or increased price targets, upgraded ratings, optimistic analyst expectations, etc.
+
+Negative investor sentiment entails the opposite expectation that a loss will be made and the invested funds will not be recuperated.
+Generally, negative expectations come from events that have an undesirable effect on some attribute or the surrounding situation of a business entity.
+Examples could be inhibition of growth/decline in sales, revenue, profit, cash flow and other financial metrics, or scandals, losses, legal issues, decreased expenses, lowering stock price or price targets, downgrading of ratings, employment issues, negative analyst expectations, etc.
+
+\textbf{The type of subjective sentiment annotation we wish to annotate is of a prototypical investor who expects a return on investment.
+}
+
+\tagged{meta}{
+\section{Practical Instructions on Annotation and Article Content}
+
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item We encourage annotators to use search engines when they need to know more about a specific topic, company, ticker symbol, term, or other topics being discussed. Subsection \ref{subsec:resources} contains suggestions for economics and finance resources for information look-up.
+    \item Annotators should at all times highlight any doubts regarding the annotation scheme and ask the supervisor for clarification. There are no stupid questions!
+    \item Keep the guidelines handy during annotation and familiarize yourself thoroughly with the guidelines properly before beginning.
+    \item The first line of the article is always the title. We annotate the title as we would the body.
+    \item Annotators should advice the supervisor any issues and problems with the annotation tool and/or text on the team communications channel (Slack).
+    \item Sentences that have no final punctuation but are followed by a full sentences are highly likely section titles of the article. These need to be annotated too.
+\end{itemize}
+
+\subsection{Webtools Used in Annotation}
+
+\begin{itemize}[leftmargin=*]
+
+    \item Video conferencing Jitsi Meet: For training annotators in voice/videochat environment. Open preferably in Chrome browser.\\
+        \texttt{url: \url{https://meet.jit.si/lt3anno}}
+    
+    \item Video tutorial for annotator training. Annotators can follow along with the DEMO project on \url{https://webanno.lt3.ugent.be}:
+    \begin{itemize}
+        \item Part 1: \url{https://youtu.be/dHUj5vIOs68}
+        \item Part 2: \url{https://youtu.be/alZmKXN2b3U}
+    \end{itemize}
+
+    \item Google Form for collecting annotator info:\\
+        This form is to be filled by all annotators for the purpose of academic reporting on annotation quality. All data collected remains confidential, anonymous, and is not to be published.\\
+        \texttt{url: \url{https://goo.gl/forms/0ZZvA6nG4pWQJlle2}}
+    
+    \item Annotation tool WebAnno v4.6.4:\\
+        WebAnno is the annotation web tool in which all annotation work will be done.
+        Use Chrome Browser to run WebAnno.\\
+        \texttt{url: \url{http://webanno.lt3.ugent.be/}}\\
+        \texttt{username: firstnamelastname}\\
+        \texttt{password: lt34nn0}
+        
+    \item Collaboration channel Slack:\\
+        Slack is an online chat-based collaboration environment for announcing issues in the annotation process and resolving annotation uncertainties. Annotators are to make an account before beginning annotation using their institutional email address.\\
+        \texttt{url: \url{https://lt3anno.slack.com/}}\\
+        
+        Here you can discuss uncertainties and report any annotation issues.
+\end{itemize}
+
+\subsection{Information Sources}
+\label{subsec:resources}
+For an overview of a company or corporation, all of its subsidiaries (daughter companies) can be found at:
+
+For general terminology, we advise to use a general purpose search engine.
+Prioritize Wikipedia and Investopedia results.\\
+
+\noindent
+Glossaries explaining economic, financial, and investing terminology:
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Brief, recommended reading:\\ \url{https://am.jpmorgan.com/us/en/asset-management/gim/adv/glossary-of-investment-terms}
+    \item \url{https://www.theguardian.com/business/glossary-business-terms-a-z-jargon}
+    \item Investopedia dictionary (extensive): \url{https://www.investopedia.com/dictionary/}
+    \item Financial Times Lexicon: \url{http://lexicon.ft.com/}
+\end{itemize}
+
+\noindent
+Wikis for economics and finance:
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Investopedia contains a vast curated resource of financial knowledge. Use it:\\
+    \url{https://www.investopedia.com/search/}
+\end{itemize}
+
+}

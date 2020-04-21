@@ -1,0 +1,44 @@
+Entity and argument annotation
+-----------------------------------
+
+ACE/ERE start from entity annotation because it is concerned with knowledge-base population primarily, event processing is a dependent task on their entity annotation scheme because participant arguments are restricted by entity type categories (PER, ORG, GPE, FAC, LOC), only filler arguments are not restricted.
+Like ERE, we also distinguish between participant and filler arguments. Participant arguments are the conceptual entities, persons, companies involved in an event. Filler arguments provide extra descriptive information (TIME, PLACE, MONEY, etc). The difference between the two is in extent (the allowed token span for annotation) and more importantly the event mention scope: the text boundaries from which participants can be annotated. Fillers can be pulled from anywhere in the document and are not limited by scope, participant can be pulled from the event trigger to the next coreferent event.
+
+We decided to do away with the extensive entity annotation phase of ERE and only annotate arguments as part of an event.
+We also do not restrict arguments by an entity type (we do not have those annotations and they are too restrictive).
+This forms some interesting issues with regard to coreference and annotation extent:
+
+Problem 1. ERE annotates all entities in the 5 relevant categories in a document and coreference links them.
+However we miss this entity coreference information because we do not have this annotation stage.
+
+For event argument annotation it sense to annotate the argument that is closest to the event trigger.
+If this is a pronoun we miss out on a lot of information regarding that argument.
+
+ eg
+For the second event we do not know what "it" refers to.
+We would need coreference annotation on that argument to find its referent.
+ERE does not have this problem: it starts with entity types and coreference and fits events on that.
+
+This presents 3 options for us:
+1. Only annotate the closest participant argument even if they are pronominal. Ignore coreferents in text: this does not capture the available identifying information of that referent and a lot of useful info is lost.
+2. Do away with event scope and annotate the most canonical or salient instance of that argument anywhere in the document: provides too limited information about the event structure of a specific mention and throws away linguistic sentential/clausal structure and limits.
+3. Add some form of argument coreference step for linking coreferent participant arguments throughout the text.
+
+Els and I prefer option 3, which gives us some options regarding the complexity of coreference:
+a. Annotate a full coreference chain for each tagged event participant argument: complex and time-consuming.
+b. Tag a link to the first non-pronominal coferent, ie NP or name. If the tagged expression is not specific (such as another pronoun or non-specific noun "the company"), we loose that referent information for processing.
+c. Tag a link the closest, most canonical and salient referent in the document: a name or a specific NP.
+
+I prefer option c, because it will be simpler and maximally identify that entity.
+Question remains what to do with nicknames, specific NPs, etc, that are on a continuum of canonical referentiality to that entity.
+e.g. Microsoft can be called MS, MSFT, the Redmond software giant, the OS vendor, etc.
+
+Problem 2. Regarding argument extent for noun phrases:
+Extent is the linguistic restrictions on the span we allow for a category to be tagged.
+ERE instructs to annotate the full NP and next indicate the head separately for each NP argument.
+I find this extra step not necessary for our task. Do we simplify this by:
+1. only indicating the head, let a dependency parser determine the full NP context if we ever need that information?
+or
+2. only indicating the full NP, let a dependency parser determine the head if we ever need that information?
+
+Personally I believe option 1. would simplify the annotation scheme greatly.
