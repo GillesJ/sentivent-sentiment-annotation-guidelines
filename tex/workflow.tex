@@ -7,7 +7,7 @@
     If no pre-existing \texttt{a\_Event} are present: go to step \ref{step:annotatesentiment}
     
     \item \label{step:forevent} Decide \hyperlink{sec:polaritydefinition}{\textbf{Polarity}} for each \hyperlink{sec:eventdefinition}{pre-existing \texttt{a\_Event}}.
-    \begin{enumerate}[label=\alph*), leftmargin=*] \label{step:polarity}% insert figure here and explain in more detail
+    \begin{enumerate}[label=\alph*), leftmargin=*] \label{step:polarity}
         \item \texttt{Positive}: the event/sentiment is mostly positive.
         \item \texttt{Negative}: the event/sentiment is mostly negative.
         \item \texttt{Neutral}: the event/sentiment has no clear positive or negative connotation.
@@ -19,6 +19,7 @@
     \textit{Which words express an opinion or could affect an investors opinion?}\\
     \textcolor{OliveGreen}{Select \texttt{1\_Sentiment} in the Layer drop-down menu (top-right side panel), drag the mouse across the words that express the sentiment in the Annotation panel. \footnotesize{Selection of the annotation layer fails sometimes. To fix: Unselect the current annotation with the \texttt{Clear} button, select a different layer than \texttt{1\_Sentiment} and next re-select \texttt{1\_Sentiment}.}}\\
     \textcolor{BrickRed}{NOTE: Sentiment words that are part of/overlap with a pre-existing Event/Entity but do not correspond fully in meaning $\rightarrow$ Annotate a new overlapping Sentiment Expression.}\\
+    \textcolor{BrickRed}{NOTE: Only annotate sentiment expressions that are \textbf{relevant to company-specific investor sentiment}. Do not annotate sentiment expressions that do not affect or express an opinion towards a company or its characteristics.}\\
     % NOTE: Sentiment words overlap with existing event: If the sentiment words intensify or change the opinion of the smaller event annotation, annotate the sentiment expression separately including the event words so that they overlap.
     
     
@@ -56,7 +57,7 @@
         Toggle \texttt{d\_Uncertain} from red ``No'' to green ``Yes'' in the side panel.
         }
         
-        \item Decide \hyperlink{sec:negationdefinition}\textbf{Negation}: \textit{Is the sentiment expression negated?}\\
+        \item Decide \hyperlink{sec:negationdefinition}{\textbf{Negation}}: \textit{Is the sentiment expression negated?}\\
         \textcolor{OliveGreen}{
         Toggle \texttt{e\_Negated} from red ``No'' to green ``Yes'' in the side panel.
         }

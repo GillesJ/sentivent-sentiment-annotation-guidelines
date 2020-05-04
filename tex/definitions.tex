@@ -17,7 +17,7 @@ A \textbf{Sentiment Expression is (sequence of) word(s)} that
 \noindent
 Look for words that stand out in conveying the content that would inform an investor’s opinion on a stock, person, market. Are there words that will influence the opinion of a potential investor?
 It is likely that there are \textbf{multiple Sentiment Expressions per sentence}.
-\textbf{Some Sentiment Expressions are already be annotated as pre-existing Event annotations}.
+\textbf{Some Sentiment Expressions are already annotated as pre-existing Event annotations}.
 You do not have to annotate new sentiment expressions on top of these Events.\\\\
 \noindent
 \textcolor{BrickRed}{NOTE: Avoid annotating full clauses: often annotating only the verb or the noun is sufficient for capturing the core meaning of the sentiment. Avoid annotating the companies, markets, stocks, assets or persons involved in the Sentiment Expression. Keep the \textbf{number of words as small as possible}.}
@@ -26,16 +26,18 @@ You do not have to annotate new sentiment expressions on top of these Events.\\\
     \centering
     \includegraphics[width=\textwidth]{img/cost03s11 general example.png}
     \caption*{$\rightarrow$ \textbf{Sentiment Expression}: ``positively impacted'' is an example of a positive Sentiment Expression. ``tax benefit'' is a pre-existing Event annotation that is also a Sentiment Expression.}
-    \label{fig:my_label}
+    \label{fig:se_ex1}
 \end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{img/amzn00s9-10 negative event example.png}
     \caption*{$\rightarrow$ \textbf{Sentiment Expression}: ``Times are tough'' is a negative Sentiment Expression, ``beefing up their e-commerce capabilities'' is a Positive Sentiment Expression, ``sprawling physical footprints'' is a neutral Sentiment Expression as a pre-existing Event annotation, ``bankruptcy'' is a negative Sentiment Expressions  as a pre-existing Event annotation, ``shuttering'' is a negative Sentiment Expression as a pre-existing Event annotation.}
-    \label{fig:my_label}
+    \label{fig:se_ex2}
 \end{figure}
 
+\noindent
+\textcolor{BrickRed}{NOTE: \textbf{Relevancy} of sentiment expressions: since we are primarily interested in company-specific investor sentiment you should only annotate new \textbf{sentiment expressions that are relevant to a company}. Sentiment expressions about companies, company-specific assets, reports or metrics, and people, infrastructure or subsidiaries related to a company are relevant should be annotated. Irrelevant background information about products, locations or other details that do not \textbf{affect an investors opinion of a company} should not be annotated.}
 
 \subsection{Sentiment Polarity}
 \label{sec:polaritydefinition}
@@ -48,7 +50,7 @@ Negative polarity does the opposite: negative polarity Sentiment Expressions dec
 
 Besides positive and negative polarity, we also annotate Neutral polarity making three polarity values in total:
 
-\begin{enumerate}[label=\alph*), leftmargin=*] \label{step:polarity}% insert figure here and explain in more detail
+\begin{enumerate}[label=\alph*), leftmargin=*] % insert figure here and explain in more detail
     \item \textbf{Positive}: an event, opinion or situation that increases the likelihood of a return on investment.
     Positive Sentiment Expressions directly or indirectly improve the attitude of a potential investor towards the target.
     \item \textbf{Negative}: an event, opinion or situation that increases the likelihood of a loss on investment.
@@ -116,8 +118,11 @@ In many cases, uncertainty will be conveyed by verbs near the sentiment expressi
     \centering
     \includegraphics[width=\textwidth]{img/amzn04s31 uncertain example.png}
     \caption*{$\rightarrow$ \textbf{Uncertain}: Sentiment Expression ``bring more subscribers into its fold'' is uncertain due to the auxiliary verb ``could''.}
-    \label{fig:my_label}
+    \label{fig:unc_ex1}
 \end{figure}
+
+\noindent
+\textcolor{BrickRed}{NOTE: Uncertainty only has to be annotated on new Sentiment Expressions. Pre-existing Events already have Uncertainty annotated by previous annotators.}\\
 
 \begin{wrapfigure}{R}{0.2\textwidth}
     \centering
@@ -126,11 +131,10 @@ In many cases, uncertainty will be conveyed by verbs near the sentiment expressi
 \end{wrapfigure}
 
 \noindent
-\textcolor{BrickRed}{NOTE: Uncertainty only has to be annotated on new Sentiment Expressions. Pre-existing Events already have Uncertainty annotated by previous annotators.}\\
-\noindent
 \textcolor{Blue}{Annotate Uncertainty in the WebAnno interface:
 1) Select the Sentiment Expression in the annotation panel by double-clicking.
 2) Click the toggle in the side panel next to \texttt{e\_Uncertain} if the sentiment has Uncertainty otherwise do nothing. The toggle should turn from red \texttt{No} to green \texttt{Yes}.}
+
 
 \subsection{Sentiment Negation}
 \label{sec:negationdefinition}
@@ -149,20 +153,20 @@ Because of this, the Polarity of the sentiment should be opposite of its meaning
     \centering
     \includegraphics[width=\textwidth]{img/amzn04s34 negated negative sentiment.png}
     \caption*{$\rightarrow$ \textbf{Negated}: we annotate ``run out of steam'' and not ``is not going to run out of steam'' as the Sentiment Expression: we do not include the negation word ``not''. While the meaning of the whole sentence is Positive, ``run out of steam'' is tagged as Negative because the phrase on its own is Negative.}
-    \label{fig:my_label}
+    \label{fig:neg_ex1}
 \end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{img/cost02s02 new sentiment negative uncertain.png}
     \caption*{$\rightarrow$ \textbf{Negated + Uncertain}: ``slowing down'' is negated by ``doesn't'' and uncertainty is added by ``seem''. While the meaning of the whole sentence is Positive, ``slowing down'' is tagged as Negative because on its own without the negation of ``doesn't'' it signals Negative polarity.}
-    \label{fig:my_label}
+    \label{fig:neg_ex2}
 \end{figure}
 
 \noindent
 \textcolor{BrickRed}{NOTE: Negation only has to be annotated on new Sentiment Expressions. Pre-existing Events already have Negation annotated by previous annotators.}\\
 
-\begin{wrapfigure}{R}{0.2\textwidth}
+\begin{wrapfigure}{l}{0.2\textwidth}
     \centering
     \includegraphics[width=0.2\textwidth]{img/negationui.png}
     \label{fig:negationui}
@@ -190,7 +194,8 @@ Here we discuss Events briefly:\\
 Events denote real-world actions, changes and situations which are relevant to economic news.
 These events come from a prescribed set of 18 categories such as ``Investment'', ``Dividend'', ``Security Value'', ``Mergers \& Acquisitions'', etc. 
 You should ignore the types of these events, however note that potentially relevant Events not belonging to these 18 types were not annotated.
-This means that you will have to pay attention to relevant news events that invoke sentiment and annotate them as new Sentiment Expressions.\\\\
+This means that you will have to pay attention to relevant news events that invoke sentiment and annotate them as new Sentiment Expressions.\\
+
 \noindent
 \textcolor{BrickRed}{NOTE: Often pre-existing Event annotations will not include all words that capture the full sentiment.
 In that case, we simply assign the polarity on the event as if it was part of a full Sentiment Expression.}
@@ -202,7 +207,15 @@ In that case, we simply assign the polarity on the event as if it was part of a 
 
 Annotators assign all pre-existing Events a polarity value of Positive, Negative, or Neutral taking into account the definition of events above.
 Annotators should take into account the \textbf{whole context of the event when determining the event polarity}.
-This means that the framing of the event and its participants are important. However, an \textbf{exception are Negated events which should ignore the negation context} when annotating polarity in the same manner as new Sentiment Expressions. Negation has already been tagged on these Events as a pre-existing annotation.
+This means that the framing of the event and its participants are important. However, an \textbf{exception are Negated events which should ignore the negation context} when annotating polarity in the same manner as new Sentiment Expressions. Negation has already been tagged on these Events as a pre-existing annotation.\\
+
+\noindent
+\textcolor{BrickRed}{NOTE: When multiple Events are annotated in the same location. Do not forget to determine polarity for all Events taking into account the different Entities involved in the different Events. If they have the same Entities, annotate the same polarity on all events.}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/aapl15 s04 two events in same place.png}
+    \caption*{$\rightarrow$ \textbf{Event}: ``market capitalization'' has two pre-existing Event annotations. The first links to the Entity ``topped \$ 900 billion'', indicating Positive opinion. The second event links to Entity ``hit \$ 1 trillion by year-end'' which is also Positive. Polarity for both events is annotated.}
+\end{figure}
 
 \section{Entities (Pre-existing annotation)}
 \label{sec:entitydefinition}
@@ -221,7 +234,7 @@ You will also make new Entity annotations when they are the target of a Sentimen
     \centering
     \includegraphics[width=\textwidth]{img/aal00s03 entities example.png}
     \caption*{$\rightarrow$ \textbf{Entity}: Several \entitycolor pre-existing Entity annotations as participants in the Event annotations.}
-    \label{fig:my_label}
+    \label{fig:ent_ex1}
 \end{figure}
 
 \section{Target}
@@ -261,16 +274,24 @@ Keep the \textbf{word sequence of New target annotations as small as possible} t
 
 \newpage
 \noindent
-\textcolor{BrickRed}{NOTE: Exceptionally, the \textbf{sentiment polarity of an expression changes depending on the target}.
+\textcolor{BrickRed}{NOTE: \textbf{Target-dependent polarity}: The \textbf{sentiment polarity of an expression changes depending on the target}.
 This usually happens when a contrasting comparison is made between two companies.
-In that case, annotate two different Sentiment Expressions with different polarity and targets in the same place.}
+In that case, annotate two different Sentiment Expressions with different polarity and targets in the same place.\\
+An existing Event can also have different polarity for different participants.
+In this case, annotate the Event itself as Neutral because its Polarity is ambiguous and make new Sentiment Expressions exactly on top of the existing Event expression with the Polarity corresponding to each Target.}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{img/amzn00-s01 different entities on new sentiment annotation.png}
-    \caption*{$\rightarrow$ \textbf{Target-dependent polarity double tagging}: New Sentiment Expression ``Closing in'' is positive for targets ``Amazon'' and ``Alibaba'', but negative for ``Walmart'' so we annotate one positive and one negative Sentiment Expression in the same place.}
+    \includegraphics[width=\textwidth]{img/abbv07 s31 target dependent new sentiment example.png}
+    \caption*{$\rightarrow$ \textbf{Target-dependent polarity double tagging}: New Sentiment Expression ``threats materialized'' is positive for the target ``Amgen's Amjevita or other biosimilar threats'', but negative for ``AbbVie'' so we annotate one positive and one negative Sentiment Expression in the same place.}
 \end{figure}
 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{img/amz00 s01 target dependent polarity double tagging on event.png}
+    \caption*{$\rightarrow$ \textbf{Target-dependent polarity double with existing Event}: Existing Event ``Closing in'' is tagged as ``Neutral'' because the event itself is ambiguous. 
+    Two new Sentiment Expressions are made exactly in the same place as ``Closing in'': One Positive for targets ``Amazon'' and ``Alibaba''and another Negative for ``Walmart''.}
+\end{figure}
 
 
 % ISSUES TO BE RESOLVED: if one event combines a positive or negative effect on different participants
